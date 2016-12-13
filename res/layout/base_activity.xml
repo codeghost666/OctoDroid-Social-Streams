@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.gh4a.widget.InvalidatingDrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinator_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:elevation="2dp">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:theme="?attr/actionBarTheme"
+                app:popupTheme="?attr/actionBarPopupTheme" />
+
+        </android.support.design.widget.AppBarLayout>
+
+        <com.gh4a.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:foreground="@drawable/header_shadow">
+
+                <FrameLayout
+                    android:id="@+id/content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <fr.castorflex.android.smoothprogressbar.SmoothProgressBar
+                        android:id="@+id/progress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:indeterminate="true"
+                        android:visibility="gone"
+                        app:spb_sections_count="6"
+                        app:spb_speed="1.0"
+                        app:spb_progressiveStart_activated="true"
+                        app:spb_progressiveStart_speed="1.5"
+                        app:spb_progressiveStop_speed="3.4"
+                        app:spb_interpolator="spb_interpolator_acceleratedecelerate" />
+
+                    <com.gh4a.widget.StyleableTextView
+                        android:id="@android:id/empty"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <FrameLayout
+                        android:id="@+id/content_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </FrameLayout>
+
+                <ViewStub
+                    android:id="@+id/error_stub"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout="@layout/error" />
+
+            </FrameLayout>
+
+        </com.gh4a.widget.SwipeRefreshLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/left_drawer"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="left" />
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/right_drawer"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:background="?attr/drawerBackground" />
+
+</com.gh4a.widget.InvalidatingDrawerLayout>
